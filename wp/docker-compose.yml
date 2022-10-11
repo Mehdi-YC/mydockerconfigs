@@ -1,0 +1,19 @@
+wordpress:
+    image: wordpress
+    links:
+     - mariadb:mysql
+    environment:
+     - WORDPRESS_DB_PASSWORD=password
+     - WORDPRESS_DB_USER=root
+    ports:
+     - "195.88.87.19:8085:80"
+    volumes:
+     - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+     - ./html:/var/www/html
+mariadb:
+    image: mariadb
+    environment:
+     - MYSQL_ROOT_PASSWORD=password
+     - MYSQL_DATABASE=wordpress
+    volumes:
+     - ./database:/var/lib/mysql
